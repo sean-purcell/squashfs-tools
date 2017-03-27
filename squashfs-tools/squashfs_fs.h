@@ -24,7 +24,7 @@
  * squashfs_fs.h
  */
 
-#define SQUASHFS_CACHED_FRAGMENTS	CONFIG_SQUASHFS_FRAGMENT_CACHE_SIZE	
+#define SQUASHFS_CACHED_FRAGMENTS	CONFIG_SQUASHFS_FRAGMENT_CACHE_SIZE
 #define SQUASHFS_MAJOR			4
 #define SQUASHFS_MINOR			0
 #define SQUASHFS_MAGIC			0x73717368
@@ -277,6 +277,7 @@ typedef long long		squashfs_inode;
 #define LZO_COMPRESSION		3
 #define XZ_COMPRESSION		4
 #define LZ4_COMPRESSION		5
+#define ZSTD_COMPRESSION	6
 
 struct squashfs_super_block {
 	unsigned int		s_magic;
