@@ -210,7 +210,13 @@ static int zstd_compress(void *strm, void *dest, void *src, int size,
 
 	if(ZSTD_isError(res)) {
 		const int errcode = ZSTD_getErrorCode(res);
-		if(errcode == ZSTD_error_dstSize_tooSmall) {
+		if(errcode == ZSTD_error_dstSize_tooSmall ||
+				/* FIXME:
+				 * ZSTD_compress 1.1.4 sometimes returns
+				 * GENERIC instead of dstSize_tooSmall,
+				 * this condition can be removed once the fix
+				 * is in a released version of zstd */
+				errcode == ZSTD_error_GENERIC) {
 			/* Special code for not enough buffer space */
 			return 0;
 		} else {
